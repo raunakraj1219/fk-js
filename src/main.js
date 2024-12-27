@@ -19,18 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const row = [];
       for (let j = 0; j < size; j++) {
         const randomValue = Math.floor(Math.random() * 10) + 1;
-        // console.log({ randomValue });
         row.push(randomValue);
       }
       grid.push(row);
     }
-    // console.log({ grid })
   }
 
 
   // Render the grid
   function renderGrid() {
-    // console.log("tt");
     gridContainer.innerHTML = '';
     for (let i = 0; i < gridSize; i += 1) {
       const rowDiv = document.createElement('div');
@@ -39,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const cellDiv = document.createElement('div');
         cellDiv.classList.add('cell');
         cellDiv.textContent = grid[j][i];
-        console.log(cellDiv.textContent, { robot1 }, { robot2 })
 
         if (robot1.x === i && robot1.y === j) {
           cellDiv.classList.add('robot1');
@@ -74,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function moveRobot(robot, direction) {
-    console.log({ robot }, { direction })
     if (robot.y === gridSize - 1) return; // Already at the last row
     let tempX = robot.x;
     let tempY = robot.y;
@@ -88,22 +83,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     else if (robot.y < gridSize - 1) {
       tempY = tempY + 1;
-      console.log("el if case");
     }
-
-    console.log({ tempX }, { tempY })
 
     updateScore(robot, robot.x, robot.y);
     robot.x = tempX;
     robot.y = tempY;
-    console.log({ robot })
     renderGrid();
     updateScores();
   }
 
   // Handle keypress for manual moves
   function handleKeyPress(event) {
-    console.log({ event }, { activeRobot })
 
     if (event.key === 'Tab') {
       event.preventDefault();
